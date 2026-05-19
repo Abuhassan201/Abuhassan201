@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import authRouter from './routes/auth';
 
 dotenv.config();
 
@@ -11,6 +12,8 @@ app.use(express.json());
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok', env: process.env.NODE_ENV || 'development' });
 });
+
+app.use('/api/auth', authRouter);
 
 app.get('/api/subjects', (_req, res) => {
   // placeholder response
